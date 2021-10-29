@@ -1,6 +1,10 @@
 <h2>Alors ? On vient faire sa comparaison ?</h2>
 
 
+
+
+<!--Poster une comparaison-->
+
 <form action="/ma-page-de-traitement" method="post">
     <div>
         <label for="Titre">Titre :</label>
@@ -29,8 +33,8 @@ var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
-  "id": "3",
-  "id_User": "1",
+  "_id": "5",
+  "id_User": "2",
   "PseudoUser": "nokiki",
   "Date": "08/03/1997",
   "Titre" :  document.getElementById("Titre").value,
@@ -49,15 +53,16 @@ var requestOptions = {
 fetch("http://localhost:3000/comparaison", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-    
-}
+  .catch(error => console.log('error', error));}
 </script>
 
 
 <input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
 
 
+
+
+<!--afficher la base de donnée-->
 <h1>Contenue de la base de données</h1>
 
 
@@ -78,6 +83,67 @@ fetch("http://localhost:3000/comparaison", requestOptions)
     
 </script>
 
-<input class="favorite styled" type="button" value="Voir comparaison", onclick="getComparaison()">
-
+<input class="favorite styled" type="button" value="Afficher toute la base en moche", onclick="getComparaison()">
 <h2 id = "textRepBDD"> rep</h2>
+
+
+
+
+
+
+<!--Afficher juste une comparaison en fonction d'un indice-->
+
+
+
+<form action="/ma-page-de-traitement" method="post">
+  <div>
+      <label for="Id">id :</label>
+      <input type="number" id="Id_input" name="Id">
+  </div>
+
+</form>
+
+
+<script>
+  // Recupération du contenue de la BDD mais juste avec un indice.
+  function getComparaisonId(){
+  
+      var requestOptions = {
+method: 'GET',
+redirect: 'follow'
+};
+
+fetch("http://localhost:3000/comparaison/" + document.getElementById("Id_input").value, requestOptions)
+.then(response => response.text())
+.then(result => document.getElementById("textRepBDD_ID").innerHTML = JSON.parse(result).Titre)
+.catch(error => console.log('error', error));
+}
+</script>
+
+
+
+<!--
+  Continuer cette fonction : ajout d'un for pour print le contenue de la base
+<script>
+  function afficherTousTitres(){
+    for (let pas = 0; pas < 3; pas++) {
+      
+  var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/comparaison", requestOptions)
+  .then(response => response.text())
+  .then(result => document.getElementById("textRepBDD").innerHTML = result)
+  .catch(error => console.log('error', error));
+
+}
+  }
+  </script>
+-->
+
+
+<input class="favorite styled" type="button" value="Afficher le titre d'une comparaison", onclick="getComparaisonId()">
+
+<h2 id = "textRepBDD_ID"> </h2>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const comparaisonSchema = new Schema({
-    id: {
+    _id: {
         type: Number, // Il faut programmer le autoincrement
         required: true,
         unique: false, // a mettre en true
