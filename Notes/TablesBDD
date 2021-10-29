@@ -1,0 +1,26 @@
+Collections = table en mongoDB
+
+Users :
+(Pour identifier nos users)
+id : autoincrement int
+pseudo :  String
+mail : String
+password : String
+
+
+Post : 
+(Table qui contiend les postes des utilisateurs)
+id : autoincrement int
+id_User :  int // l'id de l'utilisateurs qui fait le poste // Clef etrangère. 
+PseudoUser : String
+Date : Date // automatiquement généré. 
+Titre : String 
+Contenue1 : String (ou iamge mais je sais pas si c'est un type)
+Contenue2 : String (ou iamge mais je sais pas si c'est un type)
+Description : String // Le texte associée au contenue. 
+
+_______
+
+ db.Users.insertOne({id: 1, pseudo: "nokiki", mail: "nokikifr@gmail.com", password: "lefromage"})
+
+ db.Post.insertOne({id: 1, id_User: 1, PseudoUser: "nokiki", Date: "08/03/1997",  Titre: "Jeu mai kelle fauto fassebouque ?", Contenue1: "photo1", Contenue2: "photo2", Description: "Je cherche a trouver une photo facebook ki met en avant mes pek"})

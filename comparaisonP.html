@@ -1,0 +1,83 @@
+<h2>Alors ? On vient faire sa comparaison ?</h2>
+
+
+<form action="/ma-page-de-traitement" method="post">
+    <div>
+        <label for="Titre">Titre :</label>
+        <input type="text" id="Titre" name="Titre">
+    </div>
+    <div>
+        <label for="Contenue1">Contenue1 :</label>
+        <input type="text" id="Contenue1" name="Contenue1">
+    </div>
+    <div>
+        <label for="Contenue2">Contenue2 :</label>
+        <input type="text" id="Contenue2" name="Contenue2">
+    </div> 
+</form>
+
+
+<script>
+
+function postComparaison(){
+
+console.log("Titre : " + document.getElementById("Titre").value);
+console.log(document.getElementById("Contenue1").value);
+console.log(document.getElementById("Contenue2").value);
+
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "id": "3",
+  "id_User": "1",
+  "PseudoUser": "nokiki",
+  "Date": "08/03/1997",
+  "Titre" :  document.getElementById("Titre").value,
+  "Contenue1": document.getElementById("Contenue1").value,
+  "Contenue2": document.getElementById("Contenue2").value,
+  "Description": "Je cherche a trouver une photo facebook ki met en avant mes pek"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/comparaison", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+    
+}
+</script>
+
+
+<input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
+
+
+<h1>Contenue de la base de données</h1>
+
+
+<script>
+    // Recupération du contenue de la BDD
+    function getComparaison(){
+    
+        var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/comparaison", requestOptions)
+  .then(response => response.text())
+  .then(result => document.getElementById("textRepBDD").innerHTML = result)
+  .catch(error => console.log('error', error));
+}
+    
+</script>
+
+<input class="favorite styled" type="button" value="Voir comparaison", onclick="getComparaison()">
+
+<h2 id = "textRepBDD"> rep</h2>
