@@ -48,6 +48,7 @@ comparaisonRouter.route('/')
 	res.end('Deleting all the leader');
 })
 
+/*
 // Suporting the id
 comparaisonRouter.route('/:comparaisonId')
 .get( (req, res, next) => {
@@ -60,6 +61,41 @@ comparaisonRouter.route('/:comparaisonId')
 	}, (err) => next(err))
 	.catch((err)=> next(err));
 })
+*/
+
+
+// suite au tuto : https://www.youtube.com/watch?v=ZKwrOXl5TDI
+comparaisonRouter.route('/getData')
+.all((req,res,next)=>{
+	res.statusCode = 200;
+	res.setHeader('Content-Type', 'text/html');
+	next(); // On met next pour pouvoir passer d'autre fonction, par exemple pour get et post se sont celles que nous avons mis en dessous. 
+}) // Lorsque l'on met un all, peut importe la méthode (get, post, put, delete) c'est ce code qui va être executé si on appel dishes.
+
+.get( (req, res, next) => {
+	console.log("On vient d'appeler la fonction pour prendre les données dans la base jolie");
+	var resultArray = [];
+	var cursor = Comparaison.find();
+	cursor.forEach( elem => resultArray.push(elem))
+	.then(function(){
+	res.render('index', {items : resultArray});
+	 })
+	})
+
+function print(a){console.log(a)}
+
+	var fetch = function(callback) {
+	
+		Comparaison.find((err, resultArray) => {
+			if (!err) {
+				callback(resultArray);
+			}
+			else {
+				callback(false);
+			}
+		});
+	};
+
 
 module.exports = comparaisonRouter;
 

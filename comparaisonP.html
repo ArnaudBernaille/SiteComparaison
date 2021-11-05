@@ -205,3 +205,24 @@ fetch("http://localhost:3000/comparaison", requestOptions)
 -->
 
 
+<!--Nouvel essais pour afficher toute la base de données den jolie-->
+
+
+<section class = get>
+<h3>Get data</h3>
+<a href="/comparaison/getData">Charger les data</a>
+<div>
+{{# each items }}
+<article class = items>
+<div> {{this.Title}} </div>
+</article>
+
+{{/each}}
+
+</div>
+
+
+
+
+
+</section>
