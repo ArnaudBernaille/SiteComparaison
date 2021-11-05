@@ -1,26 +1,101 @@
-<h1>Bienvenue sur la fourmilière</h1>
+
+<!-- Ajout de bootstrap -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+<!-- je sais pas à quoi sa sert mais faut le mettre pour bootstrap -->
+<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
-<!--
-    Ne sert plus : 
-<script type="text/javascript"> 
-	function GoPageComparer()
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://localhost:3000/comparaison", false ); // false for synchronous request
-    xmlHttp.send( null );
-    console.log(xmlHttp.responseText);
-    return xmlHttp.response;
-}
+<!-- Le lien suivant marche, ceux au dessus me semble un peu dépassé-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<input class="favorite styled" type="button" value="Comparez !(ne marche pas, simple requete get)", onclick="GoPageComparer()">
 
--->
+<div class="container">
+    <h1>Bienvenue sur la fourmilière</h1>
 
-<a href="http://localhost:3000/comparaisonPage" target="_blank"> <input type="button" value="Page de comparaison"> </a>
+    <div class="row">
 
-<a href="http://localhost:3000/loginPage" target="_blank"> <input type="button" value="Login"> </a>
-<a href="http://localhost:3000/comparaisonPage" target="_blank"> <input type="button" value="S'inscrire"> </a>
+      <div class="col-sm">
+    
+    
+        <div class="card">
+            <div class="card-header">
+              A propos
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Commencez</h5>
+              <p class="card-text">
+                Obtenez de feeds back de la part du monde entier.
+                Commencez des maintenant.
+            </p>
+                <a href="http://localhost:3000/comparaisonPage" target="_blank"> <input type="button" value="Page de comparaison"> </a>
+            </div>
+          </div>
+
+
+      </div>
+
+      <div class="col-sm">
+
+        
+      <div class="card">
+        <div class="card-header">
+          Informations
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Commencez</h5>
+          <p class="card-text">
+            Que ce soit de vos photo facebook, une page de vente ou des vers. 
+          Decouvrez comment utiliser la fourmilière : 
+        </p>
+        <a href="http://localhost:3000/NONDEFINIE" target="_blank"> <input type="button" value="information"> </a>
+        </div>
+      </div>
+          
+
+      </div>
+      
+
+
+      <div class="col-sm">
+
+        <div class="card">
+            <div class="card-header">
+              Connexion
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Connectez-vous</h5>
+              <p class="card-text">
+                la fourmilière est là pour vous aidez. 
+                Oui Max je sais je suis nul en écriture et personne voudra venir si on présente le truc comme ça :p
+                Inscrivez-vous puis connectez vous :</p>
+                <a lass="btn btn-primary" href="http://localhost:3000/loginPage" target="_blank"> <input type="button" value="Login"> </a>
+                <a lass="btn btn-primary" href="http://localhost:3000/comparaisonPage" target="_blank"> <input type="button" value="S'inscrire"> </a>
+
+            </div>
+          </div>
+
+
+        
+        <div>
+  
+    </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 
