@@ -1,10 +1,52 @@
-<h2>Alors ? On vient faire sa comparaison ?</h2>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 
 
 
 
 <!--Poster une comparaison-->
 
+<div class="container">
+
+  <h2>Poster une comparaison</h2>
+
+  <div class="row">
+
+    <div class="col-sm">
+      <form>
+        <div class="form-group">
+          <label for="Titre">Titre : </label>
+          <input type="text" class="form-control" id="Titre" aria-describedby="emailHelp" placeholder="Titre" name="Titre">
+          <small id="emailHelp" class="form-text text-muted">Donner un titre clair maximise le nombre de feed backs !</small>
+        </div>
+        <div class="form-group">
+          <label for="Contenue1">Contenue1 :</label>
+          <input type="text" class="form-control" id="Contenue1" placeholder="Le contenue osef on mettra plus de truc après">
+        </div>
+        <div class="form-group">
+          <label for="Contenue2">Contenue2 :</label>
+          <input type="text" class="form-control" id="Contenue2" placeholder="Le contenue osef on mettra plus de truc après">
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="Contenue2">je confirme que je possède les droits d'auteurs de mon contenue</label>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="postComparaison()"> Poster la comparaison </button>
+      </form>
+
+      </div></div></div>
+
+
+
+<!--
+  L'ancien formulaire, a ne pas supprimer avant que on est bien testé celui du dessus 
 <form action="/ma-page-de-traitement" method="post">
     <div>
         <label for="Titre">Titre :</label>
@@ -20,8 +62,12 @@
     </div> 
 </form>
 
+<input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
+-->
+
 
 <script>
+  // il vaudrait mieux mettre le script dans un autre fichier
 
 function postComparaison(){
 
@@ -56,44 +102,50 @@ fetch("http://localhost:3000/comparaison", requestOptions)
   .catch(error => console.log('error', error));}
 </script>
 
+<script>
+  // Recupération du contenue de la BDD
+  function getComparaison(){
+  
+      var requestOptions = {
+method: 'GET',
+redirect: 'follow'
+};
 
-<input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
+fetch("http://localhost:3000/comparaison", requestOptions)
+.then(response => response.text())
+.then(result => document.getElementById("textRepBDD").innerHTML = result)
+.catch(error => console.log('error', error));
+}
+  
+</script>
 
 
-
+<div class="container">
+<div class="row">
+  <div class="col-m-2">
 
 <!--afficher la base de donnée-->
 <h1>Contenue de la base de données</h1>
 
-
-<script>
-    // Recupération du contenue de la BDD
-    function getComparaison(){
-    
-        var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
-
-fetch("http://localhost:3000/comparaison", requestOptions)
-  .then(response => response.text())
-  .then(result => document.getElementById("textRepBDD").innerHTML = result)
-  .catch(error => console.log('error', error));
-}
-    
-</script>
-
 <input class="favorite styled" type="button" value="Afficher toute la base en moche", onclick="getComparaison()">
 <h2 id = "textRepBDD"> rep</h2>
 
+</div>
+</div>
+</div>
 
 
 
 
+<div></div>
+<div></div>
+<div></div>
 
 <!--Afficher juste une comparaison en fonction d'un indice-->
 
-
+<div class="container">
+<div class="row">
+  <div class="col-m-2">
 
 <form action="/ma-page-de-traitement" method="post">
   <div>
@@ -102,6 +154,15 @@ fetch("http://localhost:3000/comparaison", requestOptions)
   </div>
 
 </form>
+
+
+<input class="favorite styled" type="button" value="Afficher le titre d'une comparaison", onclick="getComparaisonId()">
+
+<h2 id = "textRepBDD_ID"> </h2>
+</div>
+</div>
+</div>
+
 
 
 <script>
@@ -144,6 +205,3 @@ fetch("http://localhost:3000/comparaison", requestOptions)
 -->
 
 
-<input class="favorite styled" type="button" value="Afficher le titre d'une comparaison", onclick="getComparaisonId()">
-
-<h2 id = "textRepBDD_ID"> </h2>
