@@ -75,6 +75,7 @@ app.use(auth);
 app.use('/users', userRouter)
 app.use('/comparaison', comparaisonRouter);
 
+
 //Idiomatic expression in express to route and respond to a client request
 app.get('/', (req, res) => {        //get requests to the root ("/") will route here
     res.sendFile('index.html', {root: __dirname});      //server responds by sending the index.html file to the client's browser

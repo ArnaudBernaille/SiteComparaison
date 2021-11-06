@@ -1,12 +1,54 @@
 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>FeedBack</title>
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="navbar navbar-expand-lg fixed-top py-3">
+      <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">FeedBack</a>
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+          
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
+                  <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Equipe</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Developpement durable</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Greta's 06</a></li>
+              </ul>
+          </div>
+      </div>
+      </div>
+  </nav>
+  <div style="background: url(https://bootstrapious.com/i/snippets/sn-static-header/background.jpg)" class="jumbotron bg-cover text-white">
+    <div class="container py-5 text-center">
+        <h1 class="display-4 font-weight-bold">FeedBack</h1>
+        <p class="font-italic mb-0">Compare, re&#xE7;ois les meilleurs avis, but don't stole my dream </p>
+        <br>
+        <a href="#" role="button" class="btn btn-primary px-5">See All Features</a>
+    </div>
+</header>
+
+
+
+
+
+<!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="like_button.js"></script> -->
+
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
 
 
 
@@ -43,8 +85,9 @@
 
       </div></div></div>
 
-
-
+<!-- Liker une comparaison -->
+<div id="like_button_container" ></div>
+<script src="like_button.js"></script>
 <!--
   L'ancien formulaire, a ne pas supprimer avant que on est bien testé celui du dessus 
 <form action="/ma-page-de-traitement" method="post">
@@ -221,8 +264,8 @@ fetch("http://localhost:3000/comparaison", requestOptions)
 
 </div>
 
-
-
-
-
 </section>
+
+
+</body>
+</html>
