@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 // We import all the components we need in our app
 import Navbar from "./components/navbar";
 import Container from "./components/container";
+import "./index.css"
 // import Edit from "./components/edit";
 // import Create from "./components/create";
 // import RecordList from "./components/recordList";
