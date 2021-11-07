@@ -38,32 +38,14 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="Contenue2">je confirme que je possède les droits d'auteurs de mon contenue</label>
         </div>
-        <button type="submit" class="btn btn-primary" onclick="postComparaison()"> Poster la comparaison </button>
+        <button type="button" class="btn btn-primary" onclick="postComparaison()"> Poster la comparaison </button>
       </form>
 
       </div></div></div>
 
 
 
-<!--
-  L'ancien formulaire, a ne pas supprimer avant que on est bien testé celui du dessus 
-<form action="/ma-page-de-traitement" method="post">
-    <div>
-        <label for="Titre">Titre :</label>
-        <input type="text" id="Titre" name="Titre">
-    </div>
-    <div>
-        <label for="Contenue1">Contenue1 :</label>
-        <input type="text" id="Contenue1" name="Contenue1">
-    </div>
-    <div>
-        <label for="Contenue2">Contenue2 :</label>
-        <input type="text" id="Contenue2" name="Contenue2">
-    </div> 
-</form>
 
-<input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
--->
 
 
 <script>
@@ -71,6 +53,30 @@
 
 function postComparaison(){
 
+
+//Pour recuperer l'indice : 
+var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://localhost:27017/";
+
+			MongoClient.connect(url, function(err, db) {
+			if (err) throw err;
+			var dbo = db.db("siteComparaisonMax");
+			//Sort the result by name:
+			var sort = { _id: -1 }; // - 1 Pour trier dans un ordre decroissant.
+			dbo.collection("comparaisons").find().sort(sort).limit(1).toArray(function(err, result) {
+				if (err) throw err;
+				//console.log(JSON.parse(result._id));
+				console.log(result[0]._id);
+				res.json(result[0]._id);
+				db.close();
+			});
+
+
+//
+
+
+
+console.log("on poste la comparaison");
 console.log("Titre : " + document.getElementById("Titre").value);
 console.log(document.getElementById("Contenue1").value);
 console.log(document.getElementById("Contenue2").value);
@@ -79,7 +85,7 @@ var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
-  "_id": "5",
+  "_id": result[0]._id,
   "id_User": "2",
   "PseudoUser": "nokiki",
   "Date": "08/03/1997",
@@ -103,8 +109,7 @@ fetch("http://localhost:3000/comparaison", requestOptions)
 </script>
 
 <script>
-  // Recupération du contenue de la BDD
-  function getComparaison(){
+function getComparaison(){
   
       var requestOptions = {
 method: 'GET',
@@ -156,12 +161,6 @@ fetch("http://localhost:3000/comparaison", requestOptions)
 </form>
 
 
-<input class="favorite styled" type="button" value="Afficher le titre d'une comparaison", onclick="getComparaisonId()">
-
-<h2 id = "textRepBDD_ID"> </h2>
-</div>
-</div>
-</div>
 
 
 
@@ -182,47 +181,63 @@ fetch("http://localhost:3000/comparaison/" + document.getElementById("Id_input")
 </script>
 
 
+<input class="favorite styled" type="button" value="Afficher le titre d'une comparaison", onclick="getComparaisonId()">
 
-<!--
-  Continuer cette fonction : ajout d'un for pour print le contenue de la base
-<script>
-  function afficherTousTitres(){
-    for (let pas = 0; pas < 3; pas++) {
-      
-  var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
+<h2 id = "textRepBDD_ID"> Titre d'une comparaison</h2>
 
-fetch("http://localhost:3000/comparaison", requestOptions)
-  .then(response => response.text())
-  .then(result => document.getElementById("textRepBDD").innerHTML = result)
-  .catch(error => console.log('error', error));
 
-}
-  }
-  </script>
--->
+
 
 
 <!--Nouvel essais pour afficher toute la base de données den jolie-->
 
 
-<section class = get>
-<h3>Get data</h3>
-<a href="/comparaison/getData">Charger les data</a>
-<div>
-{{# each items }}
-<article class = items>
-<div> {{this.Title}} </div>
-</article>
-
-{{/each}}
-
-</div>
-
-
+<a onclick="getLastIndice()"> test de la fonction get last indice</a>
 
 
 
 </section>
+
+
+<script>
+  // Recupération du contenue de la BDD
+  function getLastIndice(){
+    console.log("on appel la fonction get LastIndice");
+      var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+      };
+
+      fetch("http://localhost:3000/comparaison/getLastIndice", requestOptions)
+      .then(response => response.text())
+      //.then(result => document.getElementById("textRepBDD").innerHTML = result)
+      .catch(error => console.log('error', error));
+      console.log('appel de la fonction qui recupere le dernier indice avec comme réponse : ' + response );
+      return parseInt(response);
+
+}
+</script>
+
+
+
+
+
+<!--
+  L'ancien formulaire, a ne pas supprimer avant que on est bien testé celui du dessus 
+<form action="/ma-page-de-traitement" method="post">
+    <div>
+        <label for="Titre">Titre :</label>
+        <input type="text" id="Titre" name="Titre">
+    </div>
+    <div>
+        <label for="Contenue1">Contenue1 :</label>
+        <input type="text" id="Contenue1" name="Contenue1">
+    </div>
+    <div>
+        <label for="Contenue2">Contenue2 :</label>
+        <input type="text" id="Contenue2" name="Contenue2">
+    </div> 
+</form>
+
+<input class="favorite styled" type="button" value="Poster la comparaison", onclick="postComparaison()">
+-->

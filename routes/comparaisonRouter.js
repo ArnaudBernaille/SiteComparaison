@@ -49,7 +49,8 @@ comparaisonRouter.route('/')
 })
 
 /*
-// Suporting the id
+// Pour les id mais ça pose probleme avec le truc d'apres
+// Il faut que le truc d'apres je le mette dans un autre router
 comparaisonRouter.route('/:comparaisonId')
 .get( (req, res, next) => {
 	console.log("On vient de faire une requete get sur l'id : ", req.params.comparaisonId);
@@ -64,38 +65,32 @@ comparaisonRouter.route('/:comparaisonId')
 */
 
 
-// suite au tuto : https://www.youtube.com/watch?v=ZKwrOXl5TDI
-comparaisonRouter.route('/getData')
-.all((req,res,next)=>{
-	res.statusCode = 200;
-	res.setHeader('Content-Type', 'text/html');
-	next(); // On met next pour pouvoir passer d'autre fonction, par exemple pour get et post se sont celles que nous avons mis en dessous. 
-}) // Lorsque l'on met un all, peut importe la méthode (get, post, put, delete) c'est ce code qui va être executé si on appel dishes.
 
-.get( (req, res, next) => {
-	console.log("On vient d'appeler la fonction pour prendre les données dans la base jolie");
-	var resultArray = [];
-	var cursor = Comparaison.find();
-	cursor.forEach( elem => resultArray.push(elem))
-	.then(function(){
-	res.render('index', {items : resultArray});
-	 })
-	})
+// Fonctionne wallaaaaaaa
+// Pour récupérer le dernier indice
+// je veux recupérer le dernier indice de la base de données pour pouvoir le passer lors de la déclaration d'une nouvelle comparaison.
 
-function print(a){console.log(a)}
+	comparaisonRouter.route('/getLastIndice')
 
-	var fetch = function(callback) {
+
+	.get( (req, res, next) => {
+			var MongoClient = require('mongodb').MongoClient;
+			var url = "mongodb://localhost:27017/";
+
+			MongoClient.connect(url, function(err, db) {
+			if (err) throw err;
+			var dbo = db.db("siteComparaisonMax");
+			//Sort the result by name:
+			var sort = { _id: -1 }; // - 1 Pour trier dans un ordre decroissant.
+			dbo.collection("comparaisons").find().sort(sort).limit(1).toArray(function(err, result) {
+				if (err) throw err;
+				//console.log(JSON.parse(result._id));
+				console.log(result[0]._id);
+				res.json(result[0]._id);
+				db.close();
+			});
+			});
 	
-		Comparaison.find((err, resultArray) => {
-			if (!err) {
-				callback(resultArray);
-			}
-			else {
-				callback(false);
-			}
-		});
-	};
-
+		})
 
 module.exports = comparaisonRouter;
-
