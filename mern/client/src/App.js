@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import Navbar from "./components/navbar";
 import Container from "./components/container";
 import "./index.css"
+import Reactionlike from "./components/reaction";
 // import Edit from "./components/edit";
 // import Create from "./components/create";
 // import RecordList from "./components/recordList";
@@ -33,7 +34,8 @@ function App() {
       <Navbar/>
       <Container/>
       <header className="App-header">
-        <p> EDit some text here
+        <Reactionlike/>
+        <p> EDit some text here again
         </p>
       </header>
     </div>
