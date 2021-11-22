@@ -156,4 +156,4 @@ class Edit extends Component {
 // You can get access to the history object's properties and the closest <Route>'s match via the withRouter
 // higher-order component. This makes it easier for us to edit our records.
  
-export default withRouter(Edit);
+export default Edit;
